@@ -2,3 +2,5 @@
 Thumbs.db
 
 .claude/settings.local.json
+
+.export/

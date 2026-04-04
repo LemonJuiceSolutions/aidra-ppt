@@ -7,6 +7,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(()=>{const p=new URLSearchParams(location.search);if(p.get('export')==='1')document.documentElement.classList.add('export')})();
+</script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -17,10 +20,10 @@
   --f-lg:20px; --f-xl:22px; --f-2xl:26px;
 }
 html,body{font-family:'DM Sans',sans-serif;height:100vh;width:100vw;overflow:hidden;background:#0a0a14;font-size:var(--f-base)}
-body.export .nav,body.export .kb,body.export #three-bg,body.export .noise,body.export .cursor-ring,body.export .cursor-dot,body.export .cursor-glow,body.export .slide-particles{display:none!important}
-body.export .deck{perspective:none}
-body.export .slide{transition:none!important;transform:none!important}
-body.export .slide.leaving{display:none!important}
+.export .nav,.export .kb,.export #three-bg,.export .noise,.export .cursor-ring,.export .cursor-dot,.export .cursor-glow,.export .slide-particles{display:none!important}
+.export .deck{perspective:none}
+.export .slide{transition:none!important;transform:none!important}
+.export .slide.leaving{display:none!important}
 .deck{position:fixed;inset:0;z-index:2;perspective:1200px}
 .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:44px 72px 82px;opacity:0;visibility:hidden;transform:translate3d(60px,0,-120px) rotateY(4deg);transition:opacity .7s var(--ease),transform .7s var(--ease),visibility 0s .7s;overflow:hidden}
 .slide.active{opacity:1;visibility:visible;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
@@ -31,12 +34,10 @@ body.export .slide.leaving{display:none!important}
 .slide > .diamond,
 .slide > .hex-glow,
 .slide > .prism{position:absolute;pointer-events:none;z-index:0}
-.slide > .cover-video{position:absolute;pointer-events:none;z-index:0}
 .slide > .s1,.slide > .s2,.slide > .s3,.slide > .s4,.slide > .s5,.slide > .s6,.slide > .s7-wrap,.slide > .s8{position:relative;z-index:2}
 
 /* THEMES */
 .slide-cover{background:linear-gradient(135deg,#1e35a8 0%,#2f44cc 35%,#4a2daa 65%,#3355dd 100%);color:#fff}
-.cover-video{width:400px;max-width:80vw;height:auto;top:20px;left:20px;transform:none;opacity:.35;filter:saturate(1.05) contrast(1.05);mix-blend-mode:multiply;object-fit:cover}
 .cover-noise{z-index:0;position:absolute;inset:0;opacity:.04;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .cover-orbs{z-index:0;position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(80px)}
@@ -296,7 +297,7 @@ body:hover .cursor-ring,body:hover .cursor-dot{opacity:1}
   @page{size:A4 landscape;margin:12mm}
   html,body{height:auto;overflow:visible;background:#fff}
   .deck{position:static;height:auto;perspective:none}
-  .nav,.kb,#three-bg,.noise,.cursor-ring,.cursor-dot,.cursor-glow,.slide-particles,.cover-video{display:none!important}
+  .nav,.kb,#three-bg,.noise,.cursor-ring,.cursor-dot,.cursor-glow,.slide-particles{display:none!important}
   .slide{position:relative!important;opacity:1!important;visibility:visible!important;transform:none!important;display:flex!important;page-break-after:always;break-after:page;height:calc(210mm - 24mm);width:100%;padding:18px 30px 18px;overflow:hidden}
   .slide-cover,.slide-dark,.slide-white{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .cover-noise,.cover-orbs,.dark-glow,.white-deco,.particles{display:none}
@@ -338,9 +339,6 @@ body:hover .cursor-ring,body:hover .cursor-dot{opacity:1}
 <div class="slide-particles" id="sp1"></div>
 <div class="cover-noise"></div>
 <div class="cover-orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
-<video class="cover-video" muted playsinline preload="auto">
-  <source src="Video.mp4" type="video/mp4">
-</video>
   <div class="aurora" style="top:15%;left:-50%;background:linear-gradient(90deg,rgba(0,212,255,.15),rgba(224,64,251,.1),rgba(0,212,255,.08));animation:auroraFlow 12s ease-in-out infinite"></div>
   <div class="aurora" style="top:35%;left:-60%;background:linear-gradient(90deg,rgba(123,47,190,.1),rgba(0,212,255,.08),rgba(224,64,251,.06));animation:auroraFlow 16s ease-in-out infinite reverse"></div>
   <div class="sphere sp-cyan" style="width:90px;height:90px;top:12%;right:8%;animation:sphereFloat 14s ease-in-out infinite"></div>
@@ -649,7 +647,7 @@ body:hover .cursor-ring,body:hover .cursor-dot{opacity:1}
   const N=slides.length;let cur=0;
   const params=new URLSearchParams(window.location.search);
   const exportMode=params.get('export')==='1';
-  if(exportMode) document.body.classList.add('export');
+  if(exportMode) document.documentElement.classList.add('export');
   const slideParam=parseInt(params.get('slide')||'',10);
   if(Number.isFinite(slideParam) && slideParam>=1 && slideParam<=N) cur=slideParam-1;
   slides.forEach((s,i)=>{s.classList.toggle('active',i===cur);s.classList.remove('leaving')});
@@ -657,27 +655,6 @@ body:hover .cursor-ring,body:hover .cursor-dot{opacity:1}
   if(exportMode){
     if(nav) nav.style.display='none';
     if(kb) kb.style.display='none';
-  }
-  const coverVideo=document.querySelector('.cover-video');
-  const cvKey='coverVideoStarted';
-  let coverVideoStarted=sessionStorage.getItem(cvKey)==='1';
-  function startCoverVideoOnce(){
-    if(!coverVideo||coverVideoStarted)return;
-    coverVideo.loop=false;
-    coverVideo.playbackRate=0.6;
-    coverVideo.currentTime=0;
-    const p=coverVideo.play();
-    if(p&&typeof p.then==='function'){
-      p.then(()=>{coverVideoStarted=true;sessionStorage.setItem(cvKey,'1')}).catch(()=>{});
-    }else{
-      coverVideoStarted=true;sessionStorage.setItem(cvKey,'1');
-    }
-  }
-  if(coverVideo){
-    if(exportMode) coverVideoStarted=true;
-    coverVideo.pause();
-    coverVideo.addEventListener('ended',()=>{coverVideo.pause()},{once:true});
-    if(cur===0) startCoverVideoOnce();
   }
   slides.forEach((_,i)=>{
     const d=document.createElement('div');d.className='dot dot-cover'+(i===cur?' on':'');
@@ -701,10 +678,6 @@ body:hover .cursor-ring,body:hover .cursor-dot{opacity:1}
     cur=n;slides[cur].classList.add('active');
     dots.forEach((d,i)=>d.classList.toggle('on',i===cur));
     ctr.textContent=(cur+1)+' / '+N;applyTheme(slides[cur].dataset.theme);
-    if(coverVideo){
-      if(old===0) coverVideo.pause();
-      if(cur===0) startCoverVideoOnce();
-    }
   }
   prev.addEventListener('click',()=>go(cur-1));
   next.addEventListener('click',()=>go(cur+1));
