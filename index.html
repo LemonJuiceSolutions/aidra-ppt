@@ -139,13 +139,12 @@ html,body{font-family:'DM Sans',sans-serif;height:100vh;width:100vw;overflow:hid
 .s2-p{font-size:var(--f-md);line-height:1.8;color:rgba(10,10,20,.6)}
 .s2-p strong{color:#0a0a14}
 .s2-motto{font-family:'DM Serif Display',serif;font-style:italic;font-size:var(--f-lg);color:var(--purple);border-left:3px solid var(--cyan);padding-left:16px;line-height:1.5}
-.s2-right{display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.s2-right{display:flex;flex-direction:column;justify-content:flex-end;gap:20px}
 .s2-hq{display:flex;align-items:center;gap:13px;padding:15px 20px}
 .s2-hq-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center}
 .s2-hq-lbl{font-size:var(--f-xs);text-transform:uppercase;letter-spacing:2px;color:rgba(10,10,20,.32);margin-bottom:3px}
 .s2-hq-val{font-size:var(--f-md);font-weight:600;color:#0a0a14}
-/* Partner logos — pushed to bottom via spacer */
-.s2-partner-wrap{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.s2-partner-wrap{margin-top:12px;display:flex;flex-direction:column;gap:10px}
 .s2-plabel{font-size:var(--f-xs);text-transform:uppercase;letter-spacing:3px;color:rgba(10,10,20,.3)}
 .s2-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .s2-logo-tile{padding:10px 8px;border-radius:10px;background:#fff;border:1px solid rgba(10,10,20,.07);display:flex;align-items:center;justify-content:center;min-height:68px;transition:all .3s var(--ease)}
@@ -156,7 +155,7 @@ html,body{font-family:'DM Sans',sans-serif;height:100vh;width:100vw;overflow:hid
 /* ═══════════════════════════════
    S3 — CONTESTO ATTUALE (dark)
    ═══════════════════════════════ */
-.s3{display:flex;flex-direction:column;gap:20px;width:100%;max-width:1220px;position:relative;z-index:1}.s3-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}
+.s3{display:flex;flex-direction:column;gap:20px;width:100%;max-width:1220px;position:relative;z-index:1}.s3-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:stretch}
 .s3-left{display:flex;flex-direction:column;gap:13px}
 .s3-hl{font-size:clamp(1.7rem,3.5vw,2.8rem)}
 .s3-desc{font-size:var(--f-md);line-height:1.8;color:rgba(244,240,235,.62)}
@@ -171,7 +170,7 @@ html,body{font-family:'DM Sans',sans-serif;height:100vh;width:100vw;overflow:hid
 .s3-pb-t{font-weight:700;font-size:var(--f-lg);color:var(--cream)}
 .s3-pb-d{font-size:var(--f-sm);color:rgba(244,240,235,.72);line-height:1.5}
 /* Right column pushed down */
-.s3-right{display:flex;flex-direction:column;gap:14px;justify-content:flex-start}
+.s3-right{display:flex;flex-direction:column;gap:14px;justify-content:flex-end;height:100%}
 .s3-stat{padding:22px}
 .s3-stat-n{font-family:'DM Serif Display',serif;font-size:2.6rem;background:linear-gradient(135deg,var(--cyan),var(--magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .s3-stat-t{font-size:var(--f-md);color:rgba(244,240,235,.6);line-height:1.65;margin-top:6px}
@@ -389,7 +388,7 @@ body:hover .cursor-ring,body:hover .cursor-dot{opacity:1}
       <div><div class="s2-hq-lbl">Headquarters</div><div class="s2-hq-val">HQ Verona — Veneto</div></div>
     </div>
     <!-- Partner logos aligned to bottom of right column -->
-    <div class="s2-partner-wrap stagger" style="margin-top:16px">
+    <div class="s2-partner-wrap stagger">
       <div class="s2-plabel">I nostri Partners</div>
       <div class="s2-logos">
         <div class="s2-logo-tile wcard">
