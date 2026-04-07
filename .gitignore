@@ -4,3 +4,6 @@ Thumbs.db
 .claude/settings.local.json
 
 .export/
+**/.export/
+**/.tmp/
+IXI/
